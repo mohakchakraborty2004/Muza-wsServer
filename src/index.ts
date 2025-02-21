@@ -1,6 +1,7 @@
 import express from "express";
 import { WebSocketServer } from "ws";
 import cors from "cors";
+import SpaceManager from "./spaceManager";
 
 const app = express();
 
@@ -13,13 +14,14 @@ const server = app.listen(port,()=> {
 } )
 
 const wss = new WebSocketServer({server});
+const sm = new SpaceManager()
 
 wss.on("connection", (socket) => {
     socket.send("connected"); 
 
     socket.on("message", (message) => {
         const parsedMsg = JSON.parse(message.toString());
-        // space manager handle msg 
+        sm.handleMesage(message, socket);
     })
 
     socket.on("close", () => {
