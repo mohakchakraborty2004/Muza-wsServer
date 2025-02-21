@@ -27,7 +27,8 @@ class SpaceManager {
             if (pm.action == "join") {
                 this.Join(pm.spaceId, ws);
             } else {
-                this.pubsub.publish(pm.spaceId, message);
+              console.log(pm)
+              this.pubsub.publish(pm.spaceId, message);
             }
         }  
     }
