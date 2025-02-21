@@ -41,17 +41,24 @@ class SpaceManager {
             this.Send(message);
         })
       }
+
+      this.space.get(spaceID)?.add(ws);
+      console.log("added")
     }
+    
+    // ws://localhost:8080
 
     private Send (message : any) {
         const parsedMessage: message = JSON.parse(message.toString())
-
+        console.log("inside send")
+        console.log(parsedMessage)
         if(this.space.has(parsedMessage.spaceId)){
-  
+            console.log(parsedMessage.spaceId);
             this.space.get(parsedMessage.spaceId)?.forEach((member) => {
                 // if (member.readyState === WebSocket.OPEN) {
                 //   member.send(JSON.stringify(parsedMessage));
                 // }
+                console.log("hello");
                 member.send(JSON.stringify(parsedMessage));
               });
     }
