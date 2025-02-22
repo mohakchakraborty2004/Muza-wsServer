@@ -2,6 +2,8 @@ import express from "express";
 import { WebSocketServer } from "ws";
 import cors from "cors";
 import SpaceManager from "./spaceManager";
+import dotenv from "dotenv";
+
 
 const app = express();
 

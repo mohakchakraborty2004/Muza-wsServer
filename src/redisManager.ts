@@ -1,4 +1,7 @@
 import Redis from "ioredis";
+import dotenv from "dotenv";
+dotenv.config();
+const REDIS_URL = process.env.REDIS_URL as string;
 
 
 class PubSubManager {
@@ -6,8 +9,8 @@ class PubSubManager {
     private sub : Redis;
 
     constructor() {
-        this.pub = new Redis() // add url 
-        this.sub = new Redis()
+        this.pub = new Redis(REDIS_URL) // add url 
+        this.sub = new Redis(REDIS_URL)
     }
 
     public async publish(spaceId : string, message: any) {
